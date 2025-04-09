@@ -1,0 +1,48 @@
+/* WidgetTwo.css */
+.widget-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+}
+
+.widget-title {
+  color: #34495e;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+.dropdowns-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.submit-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #2980b9;
+}
+
+.result-display {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background-color: #f4f6f6;
+  border-radius: 8px;
+  border-left: 4px solid #3498db;
+}
+
+.result-text {
+  color: #2c3e50;
+  margin: 0;
+  line-height: 1.6;
+}
