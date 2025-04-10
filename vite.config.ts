@@ -3,7 +3,6 @@ import path from "path";
 import litcss from "vite-plugin-lit-css";
 import { fileURLToPath } from "url";
 
-// Get the directory name of the current module
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 export default defineConfig({
@@ -14,13 +13,16 @@ export default defineConfig({
         widget2: path.resolve(__dirname, "src/widgets/widget2/Widget2.ts"),
       },
       output: {
-        entryFileNames: "[name]/bundle.js",
-        chunkFileNames: "[name]-[hash].js",
-        assetFileNames: "[name]-[hash].[ext]",
-        format: "es",
+        entryFileNames: "[name].js",
+        chunkFileNames: "chunks/[name]-[hash].js",
+        assetFileNames: "assets/[name]-[hash].[ext]",
+        format: "es", // Changed to ES modules
         dir: "dist",
       },
     },
+    emptyOutDir: true,
+    // Add this to prevent code splitting issues
+    modulePreload: { polyfill: false },
   },
   plugins: [litcss()],
 });
