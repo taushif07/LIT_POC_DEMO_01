@@ -1,16 +1,16 @@
 import { LitElement, html, nothing } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import { unsafeCSS } from "lit";
-import widgetStyles from "./widget2.css?inline";
-import { DROPDOWN_OPTIONS, DROPDOWN_IDS } from "./utils/common";
-import "./components/DropDown/Dropdown";
-import "./components/Button/Button";
+import widgetStyles from "./widget1.css?inline";
+import { WIDGET_ONE_DROPDOWN_OPTIONS, WIDGET_ONE_DROPDOWN_IDS } from "./utils/WidgetOneCommon";
+import "./components/DropDown/WidgetOneDropdown";
+import "./components/Button/WidgetOneButton";
 
-@customElement("widget-two")
-export class WidgetTwo extends LitElement {
+@customElement("widget-one")
+export class WidgetOne extends LitElement {
   static styles = unsafeCSS(widgetStyles);
 
-  @state() private dropdownValues = DROPDOWN_IDS.reduce(
+  @state() private dropdownValues = WIDGET_ONE_DROPDOWN_IDS.reduce(
     (acc, id) => ({
       ...acc,
       [id]: "option1",
@@ -24,34 +24,38 @@ export class WidgetTwo extends LitElement {
   render() {
     return html`
       <div class="widget-container">
-        <h1 class="widget-title">Widget Two</h1>
+        <h1 class="widget-title">Widget One</h1>
 
         <div class="dropdowns-grid">
-          ${DROPDOWN_IDS.map(
+          ${WIDGET_ONE_DROPDOWN_IDS.map(
             (id) => html`
-              <dropdown-component
+              <widget-one-dropdown-component
                 key=${id}
                 class="dropdown-item"
-                .options=${DROPDOWN_OPTIONS}
+                .options=${WIDGET_ONE_DROPDOWN_OPTIONS}
                 .value=${this.dropdownValues[id]}
                 @change=${(e: CustomEvent) =>
                   this._handleDropdownChange(id, e.detail)}
-              ></dropdown-component>
+              ></widget-one-dropdown-component>
             `
           )}
         </div>
 
-        <button-component
+        <widget-one-button-component
           class="submit-button"
           label="Show Result"
           ?loading=${this.isLoading}
           @click=${this._handleSubmit}
-        ></button-component>
+        ></widget-one-button-component>
 
         ${this.result
           ? html`
-              <div class="result-display">
-                <p class="result-text">${this.result}</p>
+              <div
+                class="result-box ${this.result.includes("Error")
+                  ? "error"
+                  : "success"}"
+              >
+                ${this.result}
               </div>
             `
           : nothing}
@@ -70,18 +74,15 @@ export class WidgetTwo extends LitElement {
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
-      // Get labels instead of values
-      const results = DROPDOWN_IDS.map((id) => {
+      const results = WIDGET_ONE_DROPDOWN_IDS.map((id, index) => {
         const value = this.dropdownValues[id];
-        const option = DROPDOWN_OPTIONS.find((opt) => opt.value === value);
-        return `${id.replace("dropdown", "Option ")}: ${
-          option?.label || "Unknown"
-        }`;
+        const option = WIDGET_ONE_DROPDOWN_OPTIONS.find((opt) => opt.value === value);
+        return `Dropdown ${index + 1}: ${option?.label || "Unknown"}`;
       });
 
-      this.result = `Widget Two Results: ${results.join(", ")}`;
+      this.result = `Result from Widget 1: ${results.join(", ")}`;
     } catch (error) {
-      this.result = "Error processing request";
+      this.result = "Error fetching results";
     } finally {
       this.isLoading = false;
     }

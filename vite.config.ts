@@ -13,7 +13,7 @@ if (!widget) {
 }
 
 // Define the input based on the widget name
-const input = path.resolve(__dirname, `src/widgets/${widget}/index.ts`);
+const input = path.resolve(__dirname, `src/widgets/${widget}/${widget}.ts`);
 
 export default defineConfig({
   build: {

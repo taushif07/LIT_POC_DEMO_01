@@ -1,8 +1,8 @@
 import { LitElement, html, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import buttonStyles from "./button.css?inline";
+import buttonStyles from "./WidgetOneButton.css?inline";
 
-@customElement("button-component")
+@customElement("widget-one-button-component")
 export class ButtonComponent extends LitElement {
   static styles = unsafeCSS(buttonStyles);
 

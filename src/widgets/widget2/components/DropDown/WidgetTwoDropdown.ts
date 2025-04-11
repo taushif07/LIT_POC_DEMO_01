@@ -1,6 +1,6 @@
 import { LitElement, html, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import dropdownStyles from "./Dropdown.css?inline";
+import dropdownStyles from "./WidgetTwoDropdown.css?inline";
 
 @customElement("widget-two-dropdown-component")
 export class DropdownComponent extends LitElement {

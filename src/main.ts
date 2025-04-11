@@ -1,5 +1,5 @@
-import { WidgetOne as Widget1 } from "./widgets/widget1/index";
-import { WidgetTwo as Widget2 } from "./widgets/widget2/index";
+import { WidgetOne as Widget1 } from "./widgets/widget1/widget1";
+import { WidgetTwo as Widget2 } from "./widgets/widget2/widget2";
 
 // Export both widgets to be bundled together
 export { Widget1, Widget2 };

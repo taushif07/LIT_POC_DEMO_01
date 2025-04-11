@@ -1,8 +1,8 @@
 import { LitElement, html, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import dropdownStyles from "./Dropdown.css?inline";
+import dropdownStyles from "./WidgetOneDropdown.css?inline";
 
-@customElement("dropdown-component")
+@customElement("widget-one-dropdown-component")
 export class DropdownComponent extends LitElement {
   static styles = unsafeCSS(dropdownStyles);
 
