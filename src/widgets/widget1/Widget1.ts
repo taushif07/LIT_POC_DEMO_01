@@ -2,15 +2,15 @@ import { LitElement, html, nothing } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import { unsafeCSS } from "lit";
 import widgetStyles from "./widget1.css?inline";
-import { DROPDOWN_OPTIONS, DROPDOWN_IDS } from "../../utils/common";
-import "../../components/DropDown/Dropdown";
-import "../../components/Button/Button";
+import { WIDGET_ONE_DROPDOWN_OPTIONS, WIDGET_ONE_DROPDOWN_IDS } from "./utils/common";
+import "./components/DropDown/Dropdown";
+import "./components/Button/Button";
 
 @customElement("widget-one")
 export class WidgetOne extends LitElement {
   static styles = unsafeCSS(widgetStyles);
 
-  @state() private dropdownValues = DROPDOWN_IDS.reduce(
+  @state() private dropdownValues = WIDGET_ONE_DROPDOWN_IDS.reduce(
     (acc, id) => ({
       ...acc,
       [id]: "option1",
@@ -27,26 +27,26 @@ export class WidgetOne extends LitElement {
         <h1 class="widget-title">Widget One</h1>
 
         <div class="dropdowns-grid">
-          ${DROPDOWN_IDS.map(
+          ${WIDGET_ONE_DROPDOWN_IDS.map(
             (id) => html`
-              <dropdown-component
+              <widget-two-dropdown-component
                 key=${id}
                 class="dropdown-item"
-                .options=${DROPDOWN_OPTIONS}
+                .options=${WIDGET_ONE_DROPDOWN_OPTIONS}
                 .value=${this.dropdownValues[id]}
                 @change=${(e: CustomEvent) =>
                   this._handleDropdownChange(id, e.detail)}
-              ></dropdown-component>
+              ></widget-two-dropdown-component>
             `
           )}
         </div>
 
-        <button-component
+        <widget-one-button-component
           class="submit-button"
           label="Show Result"
           ?loading=${this.isLoading}
           @click=${this._handleSubmit}
-        ></button-component>
+        ></widget-one-button-component>
 
         ${this.result
           ? html`
@@ -74,9 +74,9 @@ export class WidgetOne extends LitElement {
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
-      const results = DROPDOWN_IDS.map((id, index) => {
+      const results = WIDGET_ONE_DROPDOWN_IDS.map((id, index) => {
         const value = this.dropdownValues[id];
-        const option = DROPDOWN_OPTIONS.find((opt) => opt.value === value);
+        const option = WIDGET_ONE_DROPDOWN_OPTIONS.find((opt) => opt.value === value);
         return `Dropdown ${index + 1}: ${option?.label || "Unknown"}`;
       });
 

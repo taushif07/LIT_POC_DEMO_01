@@ -2,9 +2,9 @@ import { LitElement, html, nothing } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import { unsafeCSS } from "lit";
 import widgetStyles from "./widget2.css?inline";
-import { DROPDOWN_OPTIONS, DROPDOWN_IDS } from "../../utils/common";
-import "../../components/DropDown/Dropdown";
-import "../../components/Button/Button";
+import { DROPDOWN_OPTIONS, DROPDOWN_IDS } from "./utils/common";
+import "./components/DropDown/Dropdown";
+import "./components/Button/Button";
 
 @customElement("widget-two")
 export class WidgetTwo extends LitElement {
