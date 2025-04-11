@@ -30,6 +30,7 @@ export class WidgetTwo extends LitElement {
           ${DROPDOWN_IDS.map(
             (id) => html`
               <dropdown-component
+                key=${id}
                 class="dropdown-item"
                 .options=${DROPDOWN_OPTIONS}
                 .value=${this.dropdownValues[id]}
