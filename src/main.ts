@@ -1,5 +1,8 @@
-import "./widgets/widget1";
-import "./widgets/widget2";
+import { WidgetOne as Widget1 } from "./widgets/widget1/index";
+import { WidgetTwo as Widget2 } from "./widgets/widget2/index";
+
+// Export both widgets to be bundled together
+export { Widget1, Widget2 };
 
 document.addEventListener("DOMContentLoaded", () => {
   // Widget 1

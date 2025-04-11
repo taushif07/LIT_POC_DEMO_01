@@ -4,18 +4,16 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "clean": "rm -rf dist/ node_modules/",
-    "reinstall": "npm run clean && npm install",
-    "rebuild": "npm run reinstall && npm run build"
+    "dev": "cross-env WIDGET=widget1 && cross-env WIDGET=widget2 vite",
+    "build": "cross-env WIDGET=widget1 vite build && cross-env WIDGET=widget2 vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "lit": "^3.2.1"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
+    "cross-env": "^7.0.3",
     "typescript": "~5.7.2",
     "vite": "^6.2.0",
     "vite-plugin-lit-css": "^2.1.0"
